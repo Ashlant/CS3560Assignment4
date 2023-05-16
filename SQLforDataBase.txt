@@ -1,0 +1,25 @@
+CREATE TABLE address (
+    id SERIAL PRIMARY KEY NOT NULL,
+    street text NOT NULL,
+    city text NOT NULL,
+    state text NOT NULL,
+    zip_code int NULL
+);
+
+CREATE TABLE customer (
+    id SERIAL PRIMARY KEY NOT NULL,
+    name text NOT NULL,
+    phone text NOT NULL,
+    email text NULL,
+    address_id int NOT NULL,
+    FOREIGN KEY (address_id) REFERENCES address(id)
+);
+
+CREATE TABLE order_table (
+    number SERIAL PRIMARY KEY NOT NULL,
+    date date NOT NULL,
+    item text NOT NULL,
+    price double precision NOT NULL,
+    customer_id int NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
